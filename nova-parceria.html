@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propor Nova Parceria - Senac SP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root { --senac-blue: #004587; --senac-orange: #F68D2E; }
+        .bg-senac-blue { background-color: var(--senac-blue); }
+        .text-senac-blue { color: var(--senac-blue); }
+        .text-senac-orange { color: var(--senac-orange); }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50 flex flex-col min-h-screen">
+
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-3">
+                <img class="h-10" src="Senac_logo.svg.png" alt="">
+            </a>
+            <a href="index.html" class="text-sm text-senac-blue font-semibold hover:underline">Voltar para Início</a>
+        </div>
+        <div class="bg-senac-orange h-1 w-full"></div>
+    </header>
+
+    <main class="flex-grow container mx-auto px-4 py-10 max-w-4xl">
+        
+        <h1 class="text-3xl font-bold text-senac-blue mb-2"> Quero propor uma nova parceria</h1>
+        <p class="text-gray-600 mb-8 text-lg"> Se você é professor e tem interesse em propor uma nova parceria, este guia foi feito para te ajudar.</p>
+
+        <section class="bg-white p-8 rounded-lg shadow-sm mb-8 border-l-4 border-senac-orange">
+            <h2 class="text-xl font-bold text-gray-800 mb-4"> O que fazer antes de preencher a documentação?</h2>
+            <ol class="list-decimal list-inside space-y-2 text-gray-700">
+                <li> Identificar um parceiro potencial.</li>
+                <li> Verificar interesse do parceiro na colaboração.</li>
+                <li> Preencher documento de ativação (Anexo 1).</li>
+            </ol>
+            <div class="mt-6">
+                <a href="#" class="inline-flex items-center px-4 py-2 bg-senac-blue text-white rounded hover:bg-blue-800 transition">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                    Baixar Anexo 1 (Modelo)
+                </a>
+            </div>
+        </section>
+
+        <section class="space-y-8">
+            <h2 class="text-2xl font-bold text-senac-blue border-b pb-2"> Passo a Passo para Preenchimento</h2>
+            <p class="text-gray-600"> Siga o tutorial abaixo para garantir o preenchimento correto.</p>
+
+            <div class="bg-white p-6 rounded shadow-sm">
+                <h3 class="font-bold text-lg text-senac-orange mb-2">1. Identificação e Objetivo</h3>
+                <p class="text-sm text-gray-600 mb-2"> No campo "XXXXXXXX", insira o nome da empresa parceira.</p>
+                <p class="text-sm text-gray-600 mb-4"> Descreva o propósito do acordo, destacando benefícios para alunos e docentes.</p>
+                <div class="bg-gray-100 p-4 rounded text-sm text-gray-500 italic border border-gray-200">
+                    "A parceria visa oferecer palestras sobre inovação tecnológica..."
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded shadow-sm">
+                <h3 class="font-bold text-lg text-senac-orange mb-2">2. Gestores e Prazos</h3>
+                <p class="text-sm text-gray-600 mb-4"> Preencha com os responsáveis do Senac e da Empresa (Nome, E-mail, Telefone).</p>
+                <p class="text-sm text-gray-600"> A duração inicial máxima é de um ano acadêmico.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded shadow-sm">
+                <h3 class="font-bold text-lg text-senac-orange mb-4"> 5. Cronograma e Fases</h3>
+                <p class="text-sm text-gray-600 mb-4"> Exemplo de preenchimento:</p>
+                
+                <div class="overflow-x-auto">
+                    <table class="min-w-full text-sm text-left text-gray-600 border">
+                        <thead class="bg-gray-100 text-gray-700 font-bold uppercase">
+                            <tr>
+                                <th class="px-4 py-2 border">Fase</th>
+                                <th class="px-4 py-2 border">Atividade</th>
+                                <th class="px-4 py-2 border">Data/Período</th>
+                                <th class="px-4 py-2 border">Responsáveis</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="px-4 py-2 border">1</td>
+                                <td class="px-4 py-2 border">Palestras</td>
+                                <td class="px-4 py-2 border">1º Semestre 2025</td>
+                                <td class="px-4 py-2 border">Prof. Y, Empresa X</td>
+                            </tr>
+                            <tr class="bg-gray-50">
+                                <td class="px-4 py-2 border">2</td>
+                                <td class="px-4 py-2 border">Visitas Técnicas</td>
+                                <td class="px-4 py-2 border">10/08/2025</td>
+                                <td class="px-4 py-2 border">Prof. Y, Alunos</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="text-xs text-gray-500 mt-2"> Recomendamos reuniões mensais de checkpoint.</p>
+            </div>
+        </section>
+
+        <section class="mt-10 bg-blue-50 p-8 rounded-lg border border-blue-100 text-center">
+            <h2 class="text-xl font-bold text-senac-blue mb-4"> Envie o documento para análise</h2>
+            <div class="border-2 border-dashed border-senac-blue rounded-lg p-10 bg-white cursor-pointer hover:bg-gray-50 transition">
+                <p class="text-gray-500"> Arraste seu arquivo aqui ou clique para anexar o documento preenchido.</p>
+            </div>
+            <button class="mt-4 bg-senac-orange text-white px-8 py-3 rounded font-bold hover:bg-orange-600 transition">Enviar Proposta</button>
+        </section>
+
+        <section class="mt-12">
+            <h3 class="font-bold text-gray-700 text-lg mb-4">Perguntas Frequentes</h3>
+            <details class="bg-white p-4 rounded shadow-sm mb-2 group">
+                <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+                    Como é o processo para preencher a documentação?
+                    <span class="text-senac-orange group-open:rotate-180 transition">▼</span>
+                </summary>
+                <p class="text-gray-600 mt-2 text-sm pl-4 border-l-2 border-senac-orange"> O professor coleta informações básicas, acessa o Anexo 1 e preenche dados de identificação, objetivo, prazos e obrigações.</p>
+            </details>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-white py-6 mt-auto text-center text-sm">
+        <p> Dúvidas? parceriascas@sp.senac.br</p>
+    </footer>
+
+</body>
+</html>

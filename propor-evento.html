@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propor Evento - Senac SP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root { --senac-blue: #004587; --senac-orange: #F68D2E; }
+        .bg-senac-blue { background-color: var(--senac-blue); }
+        .text-senac-blue { color: var(--senac-blue); }
+        .text-senac-orange { color: var(--senac-orange); }
+    </style>
+</head>
+<body class="bg-gray-50 flex flex-col min-h-screen">
+
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-3">
+                <img class="h-10" src="Senac_logo.svg.png" alt="">
+            </a>
+            <a href="index.html" class="text-sm text-senac-blue font-semibold hover:underline">Voltar para Início</a>
+        </div>
+        <div class="bg-senac-orange h-1 w-full"></div>
+    </header>
+
+    <main class="flex-grow container mx-auto px-4 py-10 max-w-4xl">
+        
+        <h1 class="text-3xl font-bold text-senac-blue mb-4">Quer propor um evento?</h1>
+        <p class="text-gray-600 mb-8">Se você é professor e deseja trazer um evento para o Centro Universitário, este guia detalha o processo.</p>
+
+        <div class="bg-white p-6 rounded-lg shadow-sm mb-10">
+            <h2 class="text-lg font-bold text-senac-orange mb-4">Tipos de eventos que podem ser propostos:</h2>
+            <div class="flex flex-wrap gap-3">
+                <span class="bg-blue-100 text-senac-blue px-3 py-1 rounded-full text-sm font-semibold">Palestras</span>
+                <span class="bg-blue-100 text-senac-blue px-3 py-1 rounded-full text-sm font-semibold">Mesa Redonda</span>
+                <span class="bg-blue-100 text-senac-blue px-3 py-1 rounded-full text-sm font-semibold">Visita Guiada</span>
+                <span class="bg-blue-100 text-senac-blue px-3 py-1 rounded-full text-sm font-semibold">Workshops</span>
+            </div>
+        </div>
+
+        <div class="bg-white border border-gray-200 rounded-lg overflow-hidden mb-12">
+            <div class="bg-senac-blue p-4">
+                <h2 class="text-white font-bold text-lg">Formulário de Requerimento</h2>
+            </div>
+            <form class="p-8 space-y-6">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Nome Proponente</label>
+                        <input type="text" placeholder="Ex: Milton Santos" class="w-full px-3 py-2 border rounded bg-gray-50 focus:border-senac-orange focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Departamento/Curso</label>
+                        <input type="text" placeholder="Ex: Publicidade" class="w-full px-3 py-2 border rounded bg-gray-50 focus:border-senac-orange focus:outline-none">
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Data e Turno Proposto</label>
+                        <input type="text" placeholder="Ex: 30/05/2026 - Manhã" class="w-full px-3 py-2 border rounded bg-gray-50 focus:border-senac-orange focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Formato</label>
+                        <select class="w-full px-3 py-2 border rounded bg-gray-50 focus:border-senac-orange focus:outline-none">
+                            <option>Presencial</option>
+                            <option>Online</option>
+                            <option>Híbrido</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-2">Perfil do Parceiro Desejado</label>
+                    <textarea class="w-full px-3 py-2 border rounded bg-gray-50 focus:border-senac-orange focus:outline-none" rows="3" placeholder="Descreva o tipo de empresa ou profissional..."></textarea>
+                </div>
+
+                <div class="text-right">
+                    <button type="button" class="bg-senac-orange text-white px-6 py-2 rounded font-bold hover:bg-orange-600 transition shadow-md">Enviar Solicitação</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+            <div>
+                <h3 class="font-bold text-gray-800 text-lg mb-3">Fluxo de Aprovação</h3>
+                <ul class="space-y-4 text-sm text-gray-600 border-l-2 border-gray-200 pl-4">
+                    <li><strong>1. Análise de Viabilidade:</strong> Presidente do comitê avalia.</li>
+                    <li><strong>2. Busca de Parceiros:</strong> Membro do comitê busca parceiros elegíveis.</li>
+                    <li><strong>3. Confirmação:</strong> Verifica disponibilidade e interesse.</li>
+                </ul>
+            </div>
+            <div class="bg-blue-50 p-6 rounded text-sm">
+                <h3 class="font-bold text-senac-blue mb-3">Com o que o Comitê contribui?</h3>
+                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                    <li>Reserva de sala/auditório.</li>
+                    <li>Equipamentos e apoio técnico.</li>
+                    <li>Kit Palestrante e estacionamento.</li>
+                    <li>Divulgação do evento.</li>
+                </ul>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="bg-gray-800 text-white py-6 mt-auto text-center text-sm">
+        <p>Dúvidas? parceriascas@sp.senac.br</p>
+    </footer>
+
+</body>
+</html>
