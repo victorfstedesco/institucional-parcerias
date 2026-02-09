@@ -6,10 +6,13 @@
     <title>Propor Nova Parceria - Senac SP</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        :root { --senac-blue: #004587; --senac-orange: #F68D2E; }
+        :root { --senac-blue: #004587; --senac-orange: #F68D2E; --senac-orange-dark: #C96A10; }
         .bg-senac-blue { background-color: var(--senac-blue); }
         .text-senac-blue { color: var(--senac-blue); }
+        .bg-senac-orange { background-color: var(--senac-orange); }
+        .bg-senac-orange-dark { background-color: var(--senac-orange-dark); }
         .text-senac-orange { color: var(--senac-orange); }
+        .hover\:bg-senac-orange-dark:hover { background-color: var(--senac-orange-dark); }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
     </style>
 </head>
@@ -103,7 +106,7 @@
             <div class="border-2 border-dashed border-senac-blue rounded-lg p-10 bg-white cursor-pointer hover:bg-gray-50 transition">
                 <p class="text-gray-500"> Arraste seu arquivo aqui ou clique para anexar o documento preenchido.</p>
             </div>
-            <button class="mt-4 bg-senac-orange text-white px-8 py-3 rounded font-bold hover:bg-orange-600 transition">Enviar Proposta</button>
+            <button class="mt-4 bg-senac-orange-dark text-white px-8 py-3 rounded font-bold hover:bg-orange-800 transition">Enviar Proposta</button>
         </section>
 
         <section class="mt-12">
