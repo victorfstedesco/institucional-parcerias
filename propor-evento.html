@@ -3,112 +3,344 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Propor Evento - Senac SP</title>
+    <meta name="description" content="Proponha palestras, workshops, mesas redondas e visitas técnicas no Centro Universitário Senac SP. Saiba como o Comitê de Parcerias pode apoiar seu evento.">
+    <title>Propor Evento — Senac SP</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
     <style>
-        :root { --senac-blue: #004587; --senac-orange: #F68D2E; --senac-orange-dark: #C96A10; }
-        .bg-senac-blue { background-color: var(--senac-blue); }
-        .text-senac-blue { color: var(--senac-blue); }
-        .bg-senac-orange { background-color: var(--senac-orange); }
-        .bg-senac-orange-dark { background-color: var(--senac-orange-dark); }
-        .text-senac-orange { color: var(--senac-orange); }
-        .hover\:bg-senac-orange-dark:hover { background-color: var(--senac-orange-dark); }
+        :root {
+            --blue:        #004587;
+            --blue-deep:   #002d5a;
+            --blue-mid:    #0058a8;
+            --orange:      #F68D2E;
+            --orange-deep: #c96f18;
+            --cream:       #F7F5F0;
+            --ink:         #1a1a1a;
+            --muted:       #6b6760;
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'DM Sans', system-ui, sans-serif; background-color: var(--cream); color: var(--ink); overflow-x: hidden; }
+
+        /* Header */
+        header { position: sticky; top: 0; z-index: 100; background: rgba(247,245,240,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.08); }
+        .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+        nav a { font-size: 0.82rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+        nav a:hover, nav a.active { color: var(--blue); }
+        nav a.active { font-weight: 600; }
+        .header-accent { height: 3px; background: linear-gradient(90deg, var(--blue) 60%, var(--orange) 100%); }
+        .logo-divider { width: 1px; height: 24px; background: rgba(0,0,0,0.15); margin: 0 12px; }
+        .logo-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+        /* Page hero */
+        .page-hero { background-color: var(--blue-deep); padding: 5rem 2rem 4rem; position: relative; overflow: hidden; }
+        .page-hero-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 2; }
+        .page-hero-geo { position: absolute; bottom: -80px; right: -80px; width: 280px; height: 280px; border-radius: 50%; border: 50px solid rgba(246,141,46,0.1); pointer-events: none; }
+        .page-hero-geo2 { position: absolute; top: -40px; left: 40%; width: 160px; height: 160px; border-radius: 50%; border: 28px solid rgba(255,255,255,0.04); pointer-events: none; }
+
+        .breadcrumb { display: flex; align-items: center; gap: 8px; margin-bottom: 1.5rem; }
+        .breadcrumb a { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+        .breadcrumb a:hover { color: rgba(255,255,255,0.75); }
+        .breadcrumb span { font-size: 0.75rem; color: rgba(255,255,255,0.25); }
+        .breadcrumb-current { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--orange); }
+
+        .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--orange); margin-bottom: 1rem; }
+        .eyebrow-dot { width: 5px; height: 5px; background: var(--orange); border-radius: 50%; display: inline-block; }
+
+        .page-title { font-family: 'Playfair Display', Georgia, serif; font-weight: 900; font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.08; letter-spacing: -0.02em; color: #fff; margin-bottom: 1rem; }
+        .page-title em { font-style: italic; color: var(--orange); }
+        .page-desc { font-size: 1rem; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.55); max-width: 520px; }
+
+        /* Content */
+        .content-wrap { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        .section-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--orange); display: flex; align-items: center; gap: 8px; margin-bottom: 1rem; }
+        .section-label::before { content: ''; display: block; width: 24px; height: 2px; background: var(--orange); }
+        .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 700; letter-spacing: -0.01em; color: var(--ink); margin-bottom: 0.5rem; line-height: 1.2; }
+        .section-title em { font-style: italic; color: var(--blue); }
+
+        /* Event type tags */
+        .event-tag { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border: 1.5px solid rgba(0,69,135,0.2); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--blue); background: transparent; cursor: pointer; transition: all 0.2s; }
+        .event-tag:hover, .event-tag.selected { background: var(--blue); color: #fff; border-color: var(--blue); }
+
+        /* Form */
+        label { display: block; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+        input[type=text], textarea, select {
+            width: 100%;
+            padding: 12px 14px;
+            background: var(--cream);
+            border: 1px solid rgba(0,0,0,0.1);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 300;
+            color: var(--ink);
+            outline: none;
+            transition: border-color 0.2s, background 0.2s;
+            appearance: none;
+        }
+        input[type=text]:focus, textarea:focus, select:focus { border-color: var(--orange); background: #fff; }
+        input[type=text]::placeholder, textarea::placeholder { color: rgba(107,103,96,0.45); }
+        .select-wrap { position: relative; }
+        .select-wrap::after { content: ''; position: absolute; right: 14px; top: 50%; transform: translateY(-50%); width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 5px solid var(--muted); pointer-events: none; }
+
+        /* Buttons */
+        .btn-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--orange); color: #fff; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 14px 28px; border: none; cursor: pointer; text-decoration: none; transition: background 0.2s, transform 0.2s; }
+        .btn-primary:hover { background: var(--orange-deep); transform: translateX(3px); }
+
+        /* Timeline */
+        .timeline { display: flex; flex-direction: column; gap: 0; }
+        .timeline-item { display: flex; gap: 1.25rem; padding-bottom: 2rem; position: relative; }
+        .timeline-item:last-child { padding-bottom: 0; }
+        .timeline-item:not(:last-child)::before { content: ''; position: absolute; left: 19px; top: 40px; bottom: 0; width: 1px; background: rgba(0,0,0,0.1); }
+        .timeline-dot { width: 40px; height: 40px; background: #fff; border: 1.5px solid rgba(0,69,135,0.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: 'Playfair Display', serif; font-weight: 700; font-size: 0.9rem; color: var(--blue); }
+        .timeline-content h4 { font-weight: 600; font-size: 0.9rem; color: var(--ink); margin-bottom: 4px; padding-top: 8px; }
+        .timeline-content p { font-size: 0.82rem; font-weight: 300; color: var(--muted); line-height: 1.7; }
+
+        /* Contribution list */
+        .contrib-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px 0; border-bottom: 1px solid rgba(0,0,0,0.06); }
+        .contrib-item:last-child { border-bottom: none; }
+        .contrib-dot { width: 6px; height: 6px; background: var(--orange); border-radius: 50%; flex-shrink: 0; margin-top: 6px; }
+
+        /* Footer */
+        footer { background: var(--ink); color: rgba(255,255,255,0.4); }
+        .footer-inner { max-width: 1200px; margin: 0 auto; padding: 3rem 2rem; display: flex; flex-direction: column; gap: 2rem; }
+        .footer-top { display: flex; justify-content: space-between; align-items: center; gap: 2rem; flex-wrap: wrap; }
+        .footer-nav { display: flex; gap: 2rem; flex-wrap: wrap; }
+        .footer-nav a { color: rgba(255,255,255,0.35); text-decoration: none; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
+        .footer-nav a:hover { color: #fff; }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.5rem; font-size: 0.75rem; }
+
+        /* Mobile */
+        #mobile-menu { display: none; }
+        #mobile-menu.open { display: flex; }
+
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .anim { opacity: 0; animation: fadeUp 0.6s ease forwards; }
+        .anim-1 { animation-delay: 0.05s; }
+        .anim-2 { animation-delay: 0.18s; }
+        .anim-3 { animation-delay: 0.3s; }
+
+        @media (max-width: 768px) {
+            .two-col { grid-template-columns: 1fr !important; }
+            .three-col { grid-template-columns: 1fr !important; }
+        }
     </style>
 </head>
-<body class="bg-gray-50 flex flex-col min-h-screen">
+<body>
 
-    <header class="bg-white shadow-md">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="index.html" class="flex items-center space-x-3">
-                <img class="h-10" src="Senac_logo.svg.png" alt="">
-            </a>
-            <a href="index.html" class="text-sm text-senac-blue font-semibold hover:underline">Voltar para Início</a>
+    <!-- HEADER -->
+    <header>
+        <div class="nav-inner">
+            <div style="display:flex;align-items:center;">
+                <img style="height:34px;" src="Senac_logo.svg.png" alt="Senac SP">
+                <div class="logo-divider"></div>
+                <span class="logo-label">Comitê de Parcerias</span>
+            </div>
+            <nav style="display:flex;gap:2.5rem;" class="hidden-mobile" aria-label="Navegação principal">
+                <a href="index.html">Início</a>
+                <a href="nova-parceria.html">Nova Parceria</a>
+                <a href="projeto-pesquisa.html">Projetos</a>
+                <a href="propor-evento.html" class="active">Eventos</a>
+            </nav>
+            <button id="menu-toggle" aria-label="Menu" style="display:none;background:none;border:none;cursor:pointer;padding:8px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </button>
         </div>
-        <div class="bg-senac-orange h-1 w-full"></div>
+        <div id="mobile-menu" style="background:#F7F5F0;border-top:1px solid rgba(0,0,0,0.08);padding:1.5rem 2rem;flex-direction:column;gap:1.25rem;">
+            <a href="index.html" style="font-size:0.85rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);text-decoration:none;">Início</a>
+            <a href="nova-parceria.html" style="font-size:0.85rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);text-decoration:none;">Nova Parceria</a>
+            <a href="projeto-pesquisa.html" style="font-size:0.85rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);text-decoration:none;">Projetos</a>
+            <a href="propor-evento.html" style="font-size:0.85rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--blue);text-decoration:none;">Eventos</a>
+        </div>
+        <div class="header-accent"></div>
     </header>
 
-    <main class="flex-grow container mx-auto px-4 py-10 max-w-4xl">
-        
-        <h1 class="text-3xl font-bold text-senac-blue mb-4">Quer propor um evento?</h1>
-        <p class="text-gray-600 mb-8">Se você é professor e deseja trazer um evento para o Centro Universitário, este guia detalha o processo.</p>
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <div class="page-hero-geo" aria-hidden="true"></div>
+        <div class="page-hero-geo2" aria-hidden="true"></div>
+        <div class="page-hero-inner">
+            <div class="breadcrumb anim anim-1">
+                <a href="index.html">Início</a>
+                <span>/</span>
+                <span class="breadcrumb-current">Eventos</span>
+            </div>
+            <div class="eyebrow anim anim-1"><span class="eyebrow-dot"></span>Palestras, workshops e visitas</div>
+            <h1 class="page-title anim anim-2">Quer propor<br>um <em>evento?</em></h1>
+            <p class="page-desc anim anim-3">Se você é professor e deseja trazer um evento para o Centro Universitário, este guia detalha o processo e como o comitê pode apoiar.</p>
+        </div>
+    </section>
 
-        <div class="bg-white p-6 rounded-lg shadow-sm mb-10">
-            <h2 class="text-lg font-bold text-senac-orange mb-4">Tipos de eventos que podem ser propostos:</h2>
-            <div class="flex flex-wrap gap-3">
-                <span class="bg-blue-100 text-senac-blue px-3 py-1 rounded-full text-sm font-semibold">Palestras</span>
-                <span class="bg-blue-100 text-senac-blue px-3 py-1 rounded-full text-sm font-semibold">Mesa Redonda</span>
-                <span class="bg-blue-100 text-senac-blue px-3 py-1 rounded-full text-sm font-semibold">Visita Guiada</span>
-                <span class="bg-blue-100 text-senac-blue px-3 py-1 rounded-full text-sm font-semibold">Workshops</span>
+    <main style="padding:5rem 0;">
+
+        <!-- TIPOS DE EVENTO -->
+        <div class="content-wrap" style="margin-bottom:5rem;">
+            <div class="section-label">Modalidades</div>
+            <h2 class="section-title" style="margin-bottom:1rem;">Tipos de eventos<br><em>que podem ser propostos</em></h2>
+            <p style="font-size:0.875rem;font-weight:300;color:var(--muted);line-height:1.8;max-width:480px;margin-bottom:2rem;">Selecione o formato que melhor descreve o evento que você deseja propor.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;">
+                <button class="event-tag selected" onclick="toggleTag(this)">Palestra</button>
+                <button class="event-tag" onclick="toggleTag(this)">Mesa Redonda</button>
+                <button class="event-tag" onclick="toggleTag(this)">Visita Guiada</button>
+                <button class="event-tag" onclick="toggleTag(this)">Workshop</button>
+                <button class="event-tag" onclick="toggleTag(this)">Visita Técnica</button>
             </div>
         </div>
 
-        <div class="bg-white border border-gray-200 rounded-lg overflow-hidden mb-12">
-            <div class="bg-senac-blue p-4">
-                <h2 class="text-white font-bold text-lg">Formulário de Requerimento</h2>
-            </div>
-            <form class="p-8 space-y-6">
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-2">Nome Proponente</label>
-                        <input type="text" placeholder="Ex: Milton Santos" class="w-full px-3 py-2 border rounded bg-gray-50 focus:border-senac-orange focus:outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-2">Departamento/Curso</label>
-                        <input type="text" placeholder="Ex: Publicidade" class="w-full px-3 py-2 border rounded bg-gray-50 focus:border-senac-orange focus:outline-none">
-                    </div>
-                </div>
+        <!-- FORMULÁRIO -->
+        <div style="background:#fff;border-top:1px solid rgba(0,0,0,0.07);border-bottom:1px solid rgba(0,0,0,0.07);padding:5rem 0;margin-bottom:5rem;">
+            <div class="content-wrap">
+                <div style="display:grid;grid-template-columns:1fr 2fr;gap:5rem;align-items:start;" class="two-col">
 
-                <div class="grid md:grid-cols-2 gap-6">
                     <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-2">Data e Turno Proposto</label>
-                        <input type="text" placeholder="Ex: 30/05/2026 - Manhã" class="w-full px-3 py-2 border rounded bg-gray-50 focus:border-senac-orange focus:outline-none">
+                        <div class="section-label">Requerimento</div>
+                        <h2 class="section-title" style="margin-bottom:1rem;"><em>Formulário</em><br>de solicitação</h2>
+                        <p style="font-size:0.875rem;font-weight:300;color:var(--muted);line-height:1.8;">Preencha com os dados do evento que você deseja propor. Nosso comitê analisará e retornará em até 5 dias úteis.</p>
                     </div>
-                    <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-2">Formato</label>
-                        <select class="w-full px-3 py-2 border rounded bg-gray-50 focus:border-senac-orange focus:outline-none">
-                            <option>Presencial</option>
-                            <option>Online</option>
-                            <option>Híbrido</option>
-                        </select>
+
+                    <form style="display:flex;flex-direction:column;gap:1.5rem;" onsubmit="return false;">
+                        <div class="two-col" style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
+                            <div>
+                                <label for="evt-nome">Nome do Proponente</label>
+                                <input type="text" id="evt-nome" placeholder="Ex: Milton Santos">
+                            </div>
+                            <div>
+                                <label for="evt-depto">Departamento / Curso</label>
+                                <input type="text" id="evt-depto" placeholder="Ex: Publicidade e Propaganda">
+                            </div>
+                        </div>
+
+                        <div class="two-col" style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
+                            <div>
+                                <label for="evt-data">Data e Turno Proposto</label>
+                                <input type="text" id="evt-data" placeholder="Ex: 30/05/2026 — Manhã">
+                            </div>
+                            <div>
+                                <label for="evt-formato">Formato</label>
+                                <div class="select-wrap">
+                                    <select id="evt-formato">
+                                        <option>Presencial</option>
+                                        <option>Online</option>
+                                        <option>Híbrido</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="evt-perfil">Perfil do Parceiro Desejado</label>
+                            <textarea id="evt-perfil" rows="4" placeholder="Descreva o tipo de empresa ou profissional que você gostaria de trazer para o evento..."></textarea>
+                        </div>
+
+                        <div style="display:flex;justify-content:flex-end;">
+                            <button class="btn-primary" type="submit">
+                                Enviar Solicitação
+                                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- FLUXO + CONTRIBUIÇÕES -->
+        <div class="content-wrap">
+            <div class="two-col" style="display:grid;grid-template-columns:1fr 1fr;gap:5rem;">
+
+                <div>
+                    <div class="section-label">Processo</div>
+                    <h2 class="section-title" style="margin-bottom:2rem;">Fluxo de <em>aprovação</em></h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-dot">1</div>
+                            <div class="timeline-content">
+                                <h4>Análise de Viabilidade</h4>
+                                <p>O presidente do comitê avalia a proposta quanto à adequação pedagógica e logística.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot">2</div>
+                            <div class="timeline-content">
+                                <h4>Busca de Parceiros</h4>
+                                <p>Um membro do comitê mapeia e contacta parceiros elegíveis para o perfil solicitado.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot">3</div>
+                            <div class="timeline-content">
+                                <h4>Confirmação</h4>
+                                <p>Verifica disponibilidade, interesse e agenda com o parceiro. O proponente é notificado.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <div>
-                    <label class="block text-sm font-bold text-gray-700 mb-2">Perfil do Parceiro Desejado</label>
-                    <textarea class="w-full px-3 py-2 border rounded bg-gray-50 focus:border-senac-orange focus:outline-none" rows="3" placeholder="Descreva o tipo de empresa ou profissional..."></textarea>
+                    <div class="section-label">Apoio do comitê</div>
+                    <h2 class="section-title" style="margin-bottom:2rem;">Com o que o comitê <em>contribui?</em></h2>
+                    <div style="background:#fff;border:1px solid rgba(0,0,0,0.07);padding:1.5rem 2rem;">
+                        <div class="contrib-item">
+                            <span class="contrib-dot"></span>
+                            <p style="font-size:0.875rem;font-weight:300;color:var(--muted);line-height:1.7;">Reserva de sala ou auditório para o evento</p>
+                        </div>
+                        <div class="contrib-item">
+                            <span class="contrib-dot"></span>
+                            <p style="font-size:0.875rem;font-weight:300;color:var(--muted);line-height:1.7;">Equipamentos audiovisuais e apoio técnico</p>
+                        </div>
+                        <div class="contrib-item">
+                            <span class="contrib-dot"></span>
+                            <p style="font-size:0.875rem;font-weight:300;color:var(--muted);line-height:1.7;">Kit Palestrante e estacionamento para convidados</p>
+                        </div>
+                        <div class="contrib-item">
+                            <span class="contrib-dot"></span>
+                            <p style="font-size:0.875rem;font-weight:300;color:var(--muted);line-height:1.7;">Divulgação institucional do evento</p>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="text-right">
-                    <button type="button" class="bg-senac-orange-dark text-white px-6 py-2 rounded font-bold hover:bg-orange-800 transition shadow-md">Enviar Solicitação</button>
-                </div>
-            </form>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-8">
-            <div>
-                <h3 class="font-bold text-gray-800 text-lg mb-3">Fluxo de Aprovação</h3>
-                <ul class="space-y-4 text-sm text-gray-600 border-l-2 border-gray-200 pl-4">
-                    <li><strong>1. Análise de Viabilidade:</strong> Presidente do comitê avalia.</li>
-                    <li><strong>2. Busca de Parceiros:</strong> Membro do comitê busca parceiros elegíveis.</li>
-                    <li><strong>3. Confirmação:</strong> Verifica disponibilidade e interesse.</li>
-                </ul>
-            </div>
-            <div class="bg-blue-50 p-6 rounded text-sm">
-                <h3 class="font-bold text-senac-blue mb-3">Com o que o Comitê contribui?</h3>
-                <ul class="list-disc list-inside space-y-2 text-gray-700">
-                    <li>Reserva de sala/auditório.</li>
-                    <li>Equipamentos e apoio técnico.</li>
-                    <li>Kit Palestrante e estacionamento.</li>
-                    <li>Divulgação do evento.</li>
-                </ul>
             </div>
         </div>
 
     </main>
 
-    <footer class="bg-gray-800 text-white py-6 mt-auto text-center text-sm">
-        <p>Dúvidas? parceriascas@sp.senac.br</p>
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div>
+                    <img style="height:28px;filter:brightness(0) invert(1);opacity:0.6;display:block;margin-bottom:8px;" src="Senac_logo.svg.png" alt="Senac SP">
+                    <span style="font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;">Comitê de Parcerias</span>
+                </div>
+                <nav class="footer-nav" aria-label="Navegação do rodapé">
+                    <a href="index.html">Início</a>
+                    <a href="nova-parceria.html">Nova Parceria</a>
+                    <a href="projeto-pesquisa.html">Projetos</a>
+                    <a href="propor-evento.html">Eventos</a>
+                    <a href="mailto:parceriascas@sp.senac.br">Contato</a>
+                </nav>
+            </div>
+            <div class="footer-bottom">&copy; 2026 Senac São Paulo. Todos os direitos reservados.</div>
+        </div>
     </footer>
 
+    <script>
+        const toggle = document.getElementById('menu-toggle');
+        const menu = document.getElementById('mobile-menu');
+        toggle.addEventListener('click', () => { menu.classList.toggle('open'); });
+        function checkMobile() {
+            const m = window.innerWidth < 768;
+            toggle.style.display = m ? 'block' : 'none';
+            document.querySelector('.hidden-mobile').style.display = m ? 'none' : 'flex';
+            if (!m) menu.classList.remove('open');
+        }
+        checkMobile(); window.addEventListener('resize', checkMobile);
+
+        function toggleTag(el) {
+            el.classList.toggle('selected');
+        }
+    </script>
 </body>
 </html>

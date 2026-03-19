@@ -3,112 +3,303 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projetos de Pesquisa e Extensão - Senac SP</title>
+    <meta name="description" content="Encontre parceiros para projetos de pesquisa e extensão no Centro Universitário Senac SP. Verifique contratos ativos e submeta propostas acadêmicas.">
+    <title>Projetos de Pesquisa e Extensão — Senac SP</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
     <style>
-        :root { --senac-blue: #004587; --senac-orange: #F68D2E; --senac-orange-dark: #C96A10; }
-        .bg-senac-blue { background-color: var(--senac-blue); }
-        .text-senac-blue { color: var(--senac-blue); }
-        .bg-senac-orange { background-color: var(--senac-orange); }
-        .bg-senac-orange-dark { background-color: var(--senac-orange-dark); }
-        .text-senac-orange { color: var(--senac-orange); }
-        .hover\:bg-senac-orange-dark:hover { background-color: var(--senac-orange-dark); }
+        :root {
+            --blue:        #004587;
+            --blue-deep:   #002d5a;
+            --blue-mid:    #0058a8;
+            --orange:      #F68D2E;
+            --orange-deep: #c96f18;
+            --cream:       #F7F5F0;
+            --ink:         #1a1a1a;
+            --muted:       #6b6760;
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'DM Sans', system-ui, sans-serif; background-color: var(--cream); color: var(--ink); overflow-x: hidden; }
+
+        /* Header */
+        header { position: sticky; top: 0; z-index: 100; background: rgba(247,245,240,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.08); }
+        .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+        nav a { font-size: 0.82rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+        nav a:hover, nav a.active { color: var(--blue); }
+        nav a.active { font-weight: 600; }
+        .header-accent { height: 3px; background: linear-gradient(90deg, var(--blue) 60%, var(--orange) 100%); }
+        .logo-divider { width: 1px; height: 24px; background: rgba(0,0,0,0.15); margin: 0 12px; }
+        .logo-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+        /* Page hero */
+        .page-hero { background-color: var(--blue-deep); padding: 5rem 2rem 4rem; position: relative; overflow: hidden; }
+        .page-hero-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 2; }
+        .page-hero-geo { position: absolute; bottom: -80px; right: -80px; width: 280px; height: 280px; border-radius: 50%; border: 50px solid rgba(246,141,46,0.1); pointer-events: none; }
+        .page-hero-geo2 { position: absolute; top: -40px; left: 40%; width: 160px; height: 160px; border-radius: 50%; border: 28px solid rgba(255,255,255,0.04); pointer-events: none; }
+
+        .breadcrumb { display: flex; align-items: center; gap: 8px; margin-bottom: 1.5rem; }
+        .breadcrumb a { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+        .breadcrumb a:hover { color: rgba(255,255,255,0.75); }
+        .breadcrumb span { font-size: 0.75rem; color: rgba(255,255,255,0.25); }
+        .breadcrumb-current { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--orange); }
+
+        .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--orange); margin-bottom: 1rem; }
+        .eyebrow-dot { width: 5px; height: 5px; background: var(--orange); border-radius: 50%; display: inline-block; }
+
+        .page-title { font-family: 'Playfair Display', Georgia, serif; font-weight: 900; font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.08; letter-spacing: -0.02em; color: #fff; margin-bottom: 1rem; }
+        .page-title em { font-style: italic; color: var(--orange); }
+        .page-desc { font-size: 1rem; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.55); max-width: 520px; }
+
+        /* Content */
+        .content-wrap { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        .section-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--orange); display: flex; align-items: center; gap: 8px; margin-bottom: 1rem; }
+        .section-label::before { content: ''; display: block; width: 24px; height: 2px; background: var(--orange); }
+        .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 700; letter-spacing: -0.01em; color: var(--ink); margin-bottom: 0.5rem; line-height: 1.2; }
+        .section-title em { font-style: italic; color: var(--blue); }
+
+        /* Form */
+        label { display: block; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+        input[type=text], textarea, select {
+            width: 100%;
+            padding: 12px 14px;
+            background: #fff;
+            border: 1px solid rgba(0,0,0,0.12);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 300;
+            color: var(--ink);
+            outline: none;
+            transition: border-color 0.2s;
+            appearance: none;
+        }
+        input[type=text]:focus, textarea:focus, select:focus { border-color: var(--blue); }
+        input[type=text]::placeholder, textarea::placeholder { color: rgba(107,103,96,0.5); }
+
+        /* Buttons */
+        .btn-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--orange); color: #fff; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 14px 28px; border: none; cursor: pointer; text-decoration: none; transition: background 0.2s, transform 0.2s; width: 100%; justify-content: center; }
+        .btn-primary:hover { background: var(--orange-deep); }
+        .btn-blue { display: inline-flex; align-items: center; gap: 10px; background: var(--blue); color: #fff; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 12px 24px; border: none; cursor: pointer; text-decoration: none; transition: background 0.2s; }
+        .btn-blue:hover { background: var(--blue-deep); }
+
+        /* Status cards */
+        .status-card { display: flex; align-items: flex-start; gap: 1rem; padding: 1.5rem; border-left: 3px solid transparent; background: #fff; border: 1px solid rgba(0,0,0,0.07); margin-bottom: 1px; }
+        .status-card-green { border-left-color: #22c55e; }
+        .status-card-yellow { border-left-color: #f59e0b; }
+        .status-icon { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+        /* Footer */
+        footer { background: var(--ink); color: rgba(255,255,255,0.4); }
+        .footer-inner { max-width: 1200px; margin: 0 auto; padding: 3rem 2rem; display: flex; flex-direction: column; gap: 2rem; }
+        .footer-top { display: flex; justify-content: space-between; align-items: center; gap: 2rem; flex-wrap: wrap; }
+        .footer-nav { display: flex; gap: 2rem; flex-wrap: wrap; }
+        .footer-nav a { color: rgba(255,255,255,0.35); text-decoration: none; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
+        .footer-nav a:hover { color: #fff; }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.5rem; font-size: 0.75rem; }
+
+        /* Mobile */
+        #mobile-menu { display: none; }
+        #mobile-menu.open { display: flex; }
+
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .anim { opacity: 0; animation: fadeUp 0.6s ease forwards; }
+        .anim-1 { animation-delay: 0.05s; }
+        .anim-2 { animation-delay: 0.18s; }
+        .anim-3 { animation-delay: 0.3s; }
+
+        @media (max-width: 768px) {
+            .two-col { grid-template-columns: 1fr !important; }
+        }
     </style>
 </head>
-<body class="bg-gray-50 flex flex-col min-h-screen">
+<body>
 
-    <header class="bg-white shadow-md">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="index.html" class="flex items-center space-x-3">
-                <img class="h-10" src="Senac_logo.svg.png" alt="">
-            </a>
-            <a href="index.html" class="text-sm text-senac-blue font-semibold hover:underline">Voltar para Início</a>
+    <!-- HEADER -->
+    <header>
+        <div class="nav-inner">
+            <div style="display:flex;align-items:center;">
+                <img style="height:34px;" src="Senac_logo.svg.png" alt="Senac SP">
+                <div class="logo-divider"></div>
+                <span class="logo-label">Comitê de Parcerias</span>
+            </div>
+            <nav style="display:flex;gap:2.5rem;" class="hidden-mobile" aria-label="Navegação principal">
+                <a href="index.html">Início</a>
+                <a href="nova-parceria.html">Nova Parceria</a>
+                <a href="projeto-pesquisa.html" class="active">Projetos</a>
+                <a href="propor-evento.html">Eventos</a>
+            </nav>
+            <button id="menu-toggle" aria-label="Menu" style="display:none;background:none;border:none;cursor:pointer;padding:8px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </button>
         </div>
-        <div class="bg-senac-orange h-1 w-full"></div>
+        <div id="mobile-menu" style="background:#F7F5F0;border-top:1px solid rgba(0,0,0,0.08);padding:1.5rem 2rem;flex-direction:column;gap:1.25rem;">
+            <a href="index.html" style="font-size:0.85rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);text-decoration:none;">Início</a>
+            <a href="nova-parceria.html" style="font-size:0.85rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);text-decoration:none;">Nova Parceria</a>
+            <a href="projeto-pesquisa.html" style="font-size:0.85rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--blue);text-decoration:none;">Projetos</a>
+            <a href="propor-evento.html" style="font-size:0.85rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);text-decoration:none;">Eventos</a>
+        </div>
+        <div class="header-accent"></div>
     </header>
 
-    <main class="flex-grow container mx-auto px-4 py-10 max-w-4xl">
-        
-        <div class="flex items-center space-x-4 mb-6">
-            <div class="p-3 bg-orange-100 rounded-full text-senac-orange">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <div class="page-hero-geo" aria-hidden="true"></div>
+        <div class="page-hero-geo2" aria-hidden="true"></div>
+        <div class="page-hero-inner">
+            <div class="breadcrumb anim anim-1">
+                <a href="index.html">Início</a>
+                <span>/</span>
+                <span class="breadcrumb-current">Projetos</span>
             </div>
-            <h1 class="text-3xl font-bold text-senac-blue">Parcerias para Projetos de Pesquisa e Extensão</h1>
+            <div class="eyebrow anim anim-1"><span class="eyebrow-dot"></span>Pesquisa & Extensão</div>
+            <h1 class="page-title anim anim-2">Parceiros para<br><em>projetos acadêmicos</em></h1>
+            <p class="page-desc anim anim-3">Quer um parceiro para seu projeto? Este guia foi feito para te ajudar a encontrar uma parceria ou validar um contrato existente.</p>
         </div>
+    </section>
 
-        <p class="text-gray-600 mb-8 text-lg">Quer um parceiro para seu projeto? Este informe foi feito para te ajudar a encontrar uma parceria ou validar um contrato existente.</p>
+    <main style="padding:5rem 0;">
 
-        <div class="grid md:grid-cols-2 gap-8 mb-12">
-            <div class="bg-white p-6 rounded-lg shadow-sm border-t-4 border-senac-blue">
-                <h2 class="text-xl font-bold text-gray-800 mb-4">Antes de submeter seu projeto</h2>
-                <p class="text-sm text-gray-500 mb-4">Verifique se precisa de parceria para pesquisa de campo ou extensão.</p>
-                
-                <ul class="space-y-3 text-gray-700 text-sm">
-                    <li class="flex items-start">
-                        <span class="bg-senac-orange text-white rounded-full w-5 h-5 flex items-center justify-center text-xs mr-2 flex-shrink-0">1</span>
-                        <span><strong>Identifique o perfil:</strong> Setor, porte e foco da organização.</span>
-                    </li>
-                    <li class="flex items-start">
-                        <span class="bg-senac-orange text-white rounded-full w-5 h-5 flex items-center justify-center text-xs mr-2 flex-shrink-0">2</span>
-                        <span><strong>Preencha o formulário</strong> de perfil da parceria abaixo.</span>
-                    </li>
-                    <li class="flex items-start">
-                        <span class="bg-senac-orange text-white rounded-full w-5 h-5 flex items-center justify-center text-xs mr-2 flex-shrink-0">3</span>
-                        <span><strong>Aguarde orientação:</strong> O comitê verificará se já existe parceria ativa.</span>
-                    </li>
-                </ul>
-            </div>
+        <!-- DUAS COLUNAS: INFO + FORMULÁRIO -->
+        <div class="content-wrap" style="margin-bottom:5rem;">
+            <div class="two-col" style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;">
 
-            <div class="bg-gray-100 p-6 rounded-lg border border-gray-200">
-                <h2 class="text-xl font-bold text-senac-blue mb-4">Formulário de Identificação</h2>
-                <form class="space-y-3">
-                    <div>
-                        <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Nome do Professor</label>
-                        <input type="text" class="w-full px-3 py-2 border rounded focus:outline-none focus:border-senac-blue">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Área e/ou Curso</label>
-                        <input type="text" class="w-full px-3 py-2 border rounded focus:outline-none focus:border-senac-blue">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Breve descrição do perfil desejado</label>
-                        <textarea class="w-full px-3 py-2 border rounded focus:outline-none focus:border-senac-blue" rows="3"></textarea>
-                    </div>
-                    <button class="w-full bg-senac-blue text-white py-2 rounded font-bold hover:bg-blue-800 transition">Verificar Disponibilidade</button>
-                </form>
-            </div>
-        </div>
+                <!-- Coluna esquerda: informações -->
+                <div>
+                    <div class="section-label">Antes de submeter</div>
+                    <h2 class="section-title" style="margin-bottom:1.5rem;">Como <em>funciona</em> o processo?</h2>
+                    <p style="font-size:0.875rem;font-weight:300;color:var(--muted);line-height:1.8;margin-bottom:2.5rem;">Verifique se você precisa de uma parceria para pesquisa de campo ou extensão e siga os passos abaixo antes de submeter seu projeto.</p>
 
-        <section class="bg-white p-8 rounded-lg shadow-sm">
-            <h2 class="text-2xl font-bold text-senac-orange mb-6">Como preencher o documento de submissão?</h2>
-            <div class="space-y-6">
-                <div class="flex items-start">
-                    <div class="text-green-500 mr-3 mt-1">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-gray-800">Já existe parceria ativa</h3>
-                        <p class="text-gray-600 text-sm">Preencha o documento de submissão com o nome da instituição.</p>
+                    <div style="display:flex;flex-direction:column;gap:1.5rem;">
+                        <div style="display:flex;align-items:flex-start;gap:1rem;">
+                            <div style="width:36px;height:36px;background:var(--orange);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                                <span style="font-family:'Playfair Display',serif;font-weight:700;font-size:0.9rem;color:#fff;">1</span>
+                            </div>
+                            <div>
+                                <h4 style="font-weight:600;font-size:0.9rem;color:var(--ink);margin-bottom:3px;">Identifique o perfil</h4>
+                                <p style="font-size:0.82rem;font-weight:300;color:var(--muted);line-height:1.7;">Setor, porte e foco da organização desejada para a parceria.</p>
+                            </div>
+                        </div>
+                        <div style="display:flex;align-items:flex-start;gap:1rem;">
+                            <div style="width:36px;height:36px;background:var(--orange);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                                <span style="font-family:'Playfair Display',serif;font-weight:700;font-size:0.9rem;color:#fff;">2</span>
+                            </div>
+                            <div>
+                                <h4 style="font-weight:600;font-size:0.9rem;color:var(--ink);margin-bottom:3px;">Preencha o formulário</h4>
+                                <p style="font-size:0.82rem;font-weight:300;color:var(--muted);line-height:1.7;">Descreva o perfil da parceria desejada no formulário ao lado.</p>
+                            </div>
+                        </div>
+                        <div style="display:flex;align-items:flex-start;gap:1rem;">
+                            <div style="width:36px;height:36px;background:var(--orange);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                                <span style="font-family:'Playfair Display',serif;font-weight:700;font-size:0.9rem;color:#fff;">3</span>
+                            </div>
+                            <div>
+                                <h4 style="font-weight:600;font-size:0.9rem;color:var(--ink);margin-bottom:3px;">Aguarde orientação</h4>
+                                <p style="font-size:0.82rem;font-weight:300;color:var(--muted);line-height:1.7;">O comitê verificará se já existe uma parceria ativa adequada ao seu projeto.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="flex items-start">
-                    <div class="text-yellow-500 mr-3 mt-1">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                <!-- Coluna direita: formulário -->
+                <div style="background:#fff;border:1px solid rgba(0,0,0,0.07);">
+                    <div style="background:var(--blue);padding:1.5rem 2rem;">
+                        <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:#fff;">Formulário de Identificação</h3>
                     </div>
-                    <div>
-                        <h3 class="font-bold text-gray-800">Ainda não há contrato</h3>
-                        <p class="text-gray-600 text-sm">Você será redirecionado para a funcionalidade <a href="nova-parceria.html" class="text-senac-blue font-bold underline">"Quero propor uma nova parceria"</a>.</p>
-                    </div>
+                    <form style="padding:2rem;display:flex;flex-direction:column;gap:1.25rem;" onsubmit="return false;">
+                        <div>
+                            <label for="prof-nome">Nome do Professor</label>
+                            <input type="text" id="prof-nome" placeholder="Ex: Maria da Silva">
+                        </div>
+                        <div>
+                            <label for="prof-area">Área e/ou Curso</label>
+                            <input type="text" id="prof-area" placeholder="Ex: Design Gráfico">
+                        </div>
+                        <div>
+                            <label for="prof-descricao">Breve descrição do perfil desejado</label>
+                            <textarea id="prof-descricao" rows="4" placeholder="Descreva o tipo de empresa, setor ou profissional que você busca para a parceria..."></textarea>
+                        </div>
+                        <button class="btn-primary" type="submit">
+                            Verificar Disponibilidade
+                            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                        </button>
+                    </form>
                 </div>
             </div>
-        </section>
+        </div>
+
+        <!-- COMO PREENCHER A SUBMISSÃO -->
+        <div style="background:#fff;border-top:1px solid rgba(0,0,0,0.07);border-bottom:1px solid rgba(0,0,0,0.07);padding:5rem 0;">
+            <div class="content-wrap">
+                <div class="section-label">Submissão do projeto</div>
+                <h2 class="section-title" style="margin-bottom:0.5rem;">Como preencher o documento<br><em>de submissão?</em></h2>
+                <p style="font-size:0.875rem;font-weight:300;color:var(--muted);line-height:1.8;max-width:520px;margin-bottom:3rem;">O fluxo varia conforme a existência ou não de uma parceria ativa com a instituição desejada.</p>
+
+                <div style="display:flex;flex-direction:column;gap:1px;">
+
+                    <div class="status-card status-card-green">
+                        <div class="status-icon" style="background:#dcfce7;">
+                            <svg width="20" height="20" fill="none" stroke="#16a34a" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        </div>
+                        <div>
+                            <h3 style="font-weight:600;font-size:0.95rem;color:var(--ink);margin-bottom:4px;">Já existe parceria ativa</h3>
+                            <p style="font-size:0.85rem;font-weight:300;color:var(--muted);line-height:1.75;">Preencha o documento de submissão com o nome da instituição parceira. O comitê verificará o contrato vigente e liberará o acesso para o projeto.</p>
+                        </div>
+                    </div>
+
+                    <div class="status-card status-card-yellow">
+                        <div class="status-icon" style="background:#fef9c3;">
+                            <svg width="20" height="20" fill="none" stroke="#ca8a04" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                        </div>
+                        <div>
+                            <h3 style="font-weight:600;font-size:0.95rem;color:var(--ink);margin-bottom:4px;">Ainda não há contrato</h3>
+                            <p style="font-size:0.85rem;font-weight:300;color:var(--muted);line-height:1.75;">
+                                Você será orientado a acessar o processo de
+                                <a href="nova-parceria.html" style="color:var(--blue);font-weight:500;text-decoration:none;border-bottom:1px solid var(--blue);">nova parceria</a>
+                                para formalizar o contrato antes de submeter o projeto.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
 
     </main>
 
-    <footer class="bg-gray-800 text-white py-6 mt-auto text-center text-sm">
-        <p>Dúvidas? parceriascas@sp.senac.br</p>
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div>
+                    <img style="height:28px;filter:brightness(0) invert(1);opacity:0.6;display:block;margin-bottom:8px;" src="Senac_logo.svg.png" alt="Senac SP">
+                    <span style="font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;">Comitê de Parcerias</span>
+                </div>
+                <nav class="footer-nav" aria-label="Navegação do rodapé">
+                    <a href="index.html">Início</a>
+                    <a href="nova-parceria.html">Nova Parceria</a>
+                    <a href="projeto-pesquisa.html">Projetos</a>
+                    <a href="propor-evento.html">Eventos</a>
+                    <a href="mailto:parceriascas@sp.senac.br">Contato</a>
+                </nav>
+            </div>
+            <div class="footer-bottom">&copy; 2026 Senac São Paulo. Todos os direitos reservados.</div>
+        </div>
     </footer>
 
+    <script>
+        const toggle = document.getElementById('menu-toggle');
+        const menu = document.getElementById('mobile-menu');
+        toggle.addEventListener('click', () => { menu.classList.toggle('open'); });
+        function checkMobile() {
+            const m = window.innerWidth < 768;
+            toggle.style.display = m ? 'block' : 'none';
+            document.querySelector('.hidden-mobile').style.display = m ? 'none' : 'flex';
+            if (!m) menu.classList.remove('open');
+        }
+        checkMobile(); window.addEventListener('resize', checkMobile);
+    </script>
 </body>
 </html>

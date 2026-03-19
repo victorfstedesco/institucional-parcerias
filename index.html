@@ -3,143 +3,1001 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comitê de Parcerias - Senac SP</title>
+    <meta name="description" content="O Comitê de Parcerias do Centro Universitário Senac SP conecta a sala de aula ao mercado de trabalho por meio de parcerias acadêmicas, projetos de pesquisa e eventos.">
+    <title>Comitê de Parcerias — Senac SP</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
     <style>
-        /* Cores aproximadas da Identidade Visual Senac */
         :root {
-            --senac-blue: #004587;
-            --senac-orange: #F68D2E;
-            --senac-orange-dark: #C96A10;
-            --senac-gray: #f4f4f4;
+            --blue:        #004587;
+            --blue-deep:   #002d5a;
+            --blue-mid:    #0058a8;
+            --orange:      #F68D2E;
+            --orange-deep: #c96f18;
+            --cream:       #F7F5F0;
+            --ink:         #1a1a1a;
+            --muted:       #6b6760;
         }
-        .bg-senac-blue { background-color: var(--senac-blue); }
-        .text-senac-blue { color: var(--senac-blue); }
-        .bg-senac-orange { background-color: var(--senac-orange); }
-        .bg-senac-orange-dark { background-color: var(--senac-orange-dark); }
-        .text-senac-orange { color: var(--senac-orange); }
-        .border-senac-orange { border-color: var(--senac-orange); }
-        .hover\:bg-senac-orange-dark:hover { background-color: var(--senac-orange-dark); }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'DM Sans', system-ui, sans-serif;
+            background-color: var(--cream);
+            color: var(--ink);
+            overflow-x: hidden;
+        }
+
+        /* ── Typography ── */
+        .display {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+        }
+        .serif-italic {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-style: italic;
+            font-weight: 600;
+        }
+
+        /* ── Colors ── */
+        .bg-blue     { background-color: var(--blue); }
+        .bg-orange   { background-color: var(--orange); }
+        .text-blue   { color: var(--blue); }
+        .text-orange { color: var(--orange); }
+
+        /* ── Header ── */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(247, 245, 240, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+        }
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        nav a {
+            font-size: 0.82rem;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        nav a:hover, nav a.active { color: var(--blue); }
+        nav a.active { font-weight: 600; }
+        .header-accent {
+            height: 3px;
+            background: linear-gradient(90deg, var(--blue) 60%, var(--orange) 100%);
+        }
+        .logo-divider {
+            width: 1px;
+            height: 24px;
+            background: rgba(0,0,0,0.15);
+            margin: 0 12px;
+        }
+        .logo-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        /* ── Hero ── */
+        .hero {
+            background-color: var(--blue-deep);
+            position: relative;
+            overflow: hidden;
+            min-height: 88vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: stretch;
+        }
+        @media (max-width: 768px) {
+            .hero { grid-template-columns: 1fr; min-height: auto; }
+            .hero-image-col { display: none; }
+        }
+        .hero-content {
+            padding: 7rem 4rem 6rem 6rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+        }
+        @media (max-width: 768px) {
+            .hero-content { padding: 4rem 2rem 4rem; }
+        }
+        .hero-image-col {
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-image-col img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.45;
+            mix-blend-mode: luminosity;
+        }
+        .hero-image-col::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, var(--blue-deep) 0%, transparent 40%);
+            z-index: 1;
+        }
+
+        /* Geometric accent */
+        .hero-geo {
+            position: absolute;
+            bottom: -60px;
+            left: -60px;
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            border: 60px solid rgba(246,141,46,0.12);
+            pointer-events: none;
+        }
+        .hero-geo-2 {
+            position: absolute;
+            top: 40px;
+            right: -40px;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 30px solid rgba(255,255,255,0.05);
+            pointer-events: none;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 1.5rem;
+        }
+        .eyebrow-dot {
+            width: 5px; height: 5px;
+            background: var(--orange);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 900;
+            font-size: clamp(2.8rem, 5vw, 4.5rem);
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            color: #fff;
+            margin-bottom: 1.75rem;
+        }
+        .hero-title em {
+            font-style: italic;
+            color: var(--orange);
+        }
+
+        .hero-desc {
+            font-size: 1rem;
+            font-weight: 300;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.65);
+            max-width: 380px;
+            margin-bottom: 3rem;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--orange);
+            color: #fff;
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 14px 28px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .btn-primary:hover {
+            background: var(--orange-deep);
+            transform: translateX(3px);
+        }
+        .btn-ghost {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: transparent;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.82rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            padding: 14px 24px;
+            border: 1px solid rgba(255,255,255,0.2);
+            text-decoration: none;
+            transition: border-color 0.2s, color 0.2s;
+        }
+        .btn-ghost:hover {
+            border-color: rgba(255,255,255,0.5);
+            color: #fff;
+        }
+
+        /* ── Stats Strip ── */
+        .stats-strip {
+            background: var(--blue);
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+        @media (max-width: 640px) {
+            .stats-strip { grid-template-columns: repeat(2, 1fr); }
+        }
+        .stat-item {
+            padding: 2rem 2.5rem;
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+        .stat-item:last-child { border-right: none; }
+        .stat-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #fff;
+            display: block;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+        .stat-label {
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* ── Main content ── */
+        .content-wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Section header */
+        .section-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--orange);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 1rem;
+        }
+        .section-label::before {
+            content: '';
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--orange);
+        }
+
+        /* ── Quem Somos ── */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            padding: 7rem 0;
+        }
+        @media (max-width: 768px) {
+            .about-grid { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 0; }
+        }
+        .about-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3.5vw, 3rem);
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            color: var(--ink);
+            margin-bottom: 1.5rem;
+        }
+        .about-title em {
+            font-style: italic;
+            color: var(--blue);
+        }
+        .about-text {
+            font-size: 0.95rem;
+            font-weight: 300;
+            line-height: 1.9;
+            color: var(--muted);
+            margin-bottom: 1rem;
+        }
+        .about-image-wrap {
+            position: relative;
+        }
+        .about-image-wrap img {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            display: block;
+        }
+        .about-image-accent {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            width: 120px;
+            height: 120px;
+            background: var(--orange);
+            z-index: -1;
+        }
+        .about-image-border {
+            position: absolute;
+            top: -16px;
+            left: -16px;
+            right: 16px;
+            bottom: 16px;
+            border: 2px solid var(--blue);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* ── Atividades ── */
+        .activities-section {
+            background: var(--blue-deep);
+            padding: 6rem 0;
+        }
+        .activities-header {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 4rem;
+        }
+        @media (max-width: 640px) {
+            .activities-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+        }
+        .activities-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.15;
+            max-width: 380px;
+        }
+        .activities-title em { font-style: italic; color: var(--orange); }
+        .activities-desc {
+            font-size: 0.875rem;
+            font-weight: 300;
+            color: rgba(255,255,255,0.5);
+            max-width: 280px;
+            line-height: 1.7;
+        }
+        .activities-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1px;
+        }
+        @media (max-width: 900px) {
+            .activities-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 480px) {
+            .activities-grid { grid-template-columns: 1fr; }
+        }
+        .activity-item {
+            background: rgba(255,255,255,0.04);
+            padding: 2rem 1.5rem;
+            border: 1px solid rgba(255,255,255,0.07);
+            transition: background 0.25s;
+        }
+        .activity-item:hover {
+            background: rgba(246,141,46,0.1);
+            border-color: rgba(246,141,46,0.25);
+        }
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            color: var(--orange);
+            margin-bottom: 1rem;
+        }
+        .activity-name {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.4;
+        }
+
+        /* ── Services ── */
+        .services-section {
+            padding: 7rem 0;
+        }
+        .services-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        .services-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3.5vw, 3rem);
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            color: var(--ink);
+            margin-top: 0.5rem;
+        }
+        .services-title em { font-style: italic; color: var(--blue); }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            background: rgba(0,0,0,0.08);
+        }
+        @media (max-width: 768px) {
+            .services-grid { grid-template-columns: 1fr; }
+        }
+        .service-card {
+            background: var(--cream);
+            padding: 3rem 2.5rem;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            transition: background 0.25s;
+            border-bottom: 3px solid transparent;
+        }
+        .service-card:hover {
+            background: #fff;
+            border-bottom-color: var(--orange);
+        }
+        .service-card:hover .service-arrow { transform: translateX(4px); }
+        .service-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 900;
+            color: rgba(0,0,0,0.05);
+            line-height: 1;
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            letter-spacing: -0.04em;
+            pointer-events: none;
+        }
+        .service-icon-wrap {
+            width: 48px;
+            height: 48px;
+            border: 1.5px solid rgba(0,69,135,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            color: var(--blue);
+        }
+        .service-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 0.75rem;
+            line-height: 1.25;
+        }
+        .service-desc {
+            font-size: 0.85rem;
+            font-weight: 300;
+            color: var(--muted);
+            line-height: 1.75;
+            flex: 1;
+        }
+        .service-footer {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 2rem;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--blue);
+        }
+        .service-arrow {
+            transition: transform 0.2s;
+        }
+
+        /* ── Bottom strip ── */
+        .bottom-strip {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        @media (max-width: 768px) {
+            .bottom-strip { grid-template-columns: 1fr; }
+        }
+        .newsletter-block {
+            background: var(--blue);
+            padding: 4rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .newsletter-block::after {
+            content: '';
+            position: absolute;
+            bottom: -60px;
+            right: -60px;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 40px solid rgba(255,255,255,0.05);
+        }
+        .newsletter-block h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+        .newsletter-block p {
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.55);
+            margin-bottom: 2rem;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+        .newsletter-form {
+            display: flex;
+            gap: 0;
+        }
+        .newsletter-input {
+            flex: 1;
+            padding: 12px 16px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-right: none;
+            color: #fff;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.875rem;
+            outline: none;
+        }
+        .newsletter-input::placeholder { color: rgba(255,255,255,0.35); }
+        .newsletter-input:focus { background: rgba(255,255,255,0.15); }
+        .newsletter-btn {
+            background: var(--orange);
+            border: none;
+            color: #fff;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 12px 20px;
+            cursor: pointer;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+        .newsletter-btn:hover { background: var(--orange-deep); }
+
+        .contact-block {
+            background: #fff;
+            padding: 4rem 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .contact-block h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 0.5rem;
+        }
+        .contact-block p {
+            font-size: 0.875rem;
+            color: var(--muted);
+            margin-bottom: 2rem;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--blue);
+            font-size: 0.875rem;
+            font-weight: 600;
+            border-bottom: 1.5px solid var(--blue);
+            padding-bottom: 3px;
+            width: fit-content;
+            transition: color 0.2s, border-color 0.2s;
+        }
+        .contact-link:hover {
+            color: var(--orange);
+            border-color: var(--orange);
+        }
+
+        /* ── Footer ── */
+        footer {
+            background: var(--ink);
+            color: rgba(255,255,255,0.4);
+        }
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .footer-nav {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .footer-nav a {
+            color: rgba(255,255,255,0.35);
+            text-decoration: none;
+            font-size: 0.78rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+        .footer-nav a:hover { color: #fff; }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding-top: 1.5rem;
+            font-size: 0.75rem;
+        }
+
+        /* ── Animations ── */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .anim { opacity: 0; animation: fadeUp 0.65s ease forwards; }
+        .anim-1 { animation-delay: 0.05s; }
+        .anim-2 { animation-delay: 0.18s; }
+        .anim-3 { animation-delay: 0.32s; }
+        .anim-4 { animation-delay: 0.46s; }
+
+        /* ── Mobile menu ── */
+        #mobile-menu { display: none; }
+        #mobile-menu.open { display: block; }
+
+        @media (max-width: 640px) {
+            .newsletter-block, .contact-block { padding: 3rem 2rem; }
+        }
     </style>
 </head>
-<body class="bg-gray-50 flex flex-col min-h-screen">
+<body>
 
-    <header class="bg-white shadow-md">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <img class="h-10" src="Senac_logo.svg.png" alt="">
+    <!-- HEADER -->
+    <header>
+        <div class="nav-inner">
+            <div style="display:flex;align-items:center;">
+                <img style="height:34px;" src="Senac_logo.svg.png" alt="Senac SP">
+                <div class="logo-divider"></div>
+                <span class="logo-label">Comitê de Parcerias</span>
             </div>
-            <nav class="hidden md:flex space-x-6 text-sm font-semibold text-gray-600">
-                <a href="index.html" class="text-senac-blue hover:text-senac-orange">Início</a>
-                <a href="nova-parceria.html" class="hover:text-senac-orange">Nova Parceria</a>
-                <a href="projeto-pesquisa.html" class="hover:text-senac-orange">Projetos</a>
-                <a href="propor-evento.html" class="hover:text-senac-orange">Eventos</a>
+
+            <nav style="display:flex;gap:2.5rem;" class="hidden-mobile" aria-label="Navegação principal">
+                <a href="index.html" class="active">Início</a>
+                <a href="nova-parceria.html">Nova Parceria</a>
+                <a href="projeto-pesquisa.html">Projetos</a>
+                <a href="propor-evento.html">Eventos</a>
             </nav>
+
+            <button id="menu-toggle" aria-label="Menu"
+                style="display:none;background:none;border:none;cursor:pointer;padding:8px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+                </svg>
+            </button>
         </div>
-        <div class="bg-senac-blue h-2 w-full"></div>
+
+        <!-- Mobile nav -->
+        <div id="mobile-menu" style="background:#F7F5F0;border-top:1px solid rgba(0,0,0,0.08);padding:1.5rem 2rem;display:flex;flex-direction:column;gap:1.25rem;">
+            <a href="index.html" style="font-size:0.85rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--blue);text-decoration:none;">Início</a>
+            <a href="nova-parceria.html" style="font-size:0.85rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);text-decoration:none;">Nova Parceria</a>
+            <a href="projeto-pesquisa.html" style="font-size:0.85rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);text-decoration:none;">Projetos</a>
+            <a href="propor-evento.html" style="font-size:0.85rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);text-decoration:none;">Eventos</a>
+        </div>
+
+        <div class="header-accent"></div>
     </header>
 
-    <section class="bg-white py-12 border-b">
-        <div class="container mx-auto px-4 text-center">
-            <h1 class="text-4xl font-bold text-senac-blue mb-4">Olá, somos o Comitê de Parcerias</h1>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">Conectando a sala de aula com o mercado através da gestão de parcerias acadêmicas.</p>
+    <!-- HERO -->
+    <section class="hero" aria-label="Apresentação">
+        <div class="hero-content">
+            <div class="hero-geo" aria-hidden="true"></div>
+            <div class="hero-geo-2" aria-hidden="true"></div>
+
+            <div class="eyebrow anim anim-1">
+                <span class="eyebrow-dot"></span>
+                Centro Universitário Senac SP
+            </div>
+
+            <h1 class="hero-title anim anim-2">
+                Sala de aula<br>
+                encontra o<br>
+                <em>mercado.</em>
+            </h1>
+
+            <p class="hero-desc anim anim-3">
+                O Comitê de Parcerias gerencia colaborações acadêmicas que conectam estudantes a oportunidades reais — com transparência, estrutura e propósito.
+            </p>
+
+            <div style="display:flex;gap:12px;flex-wrap:wrap;" class="anim anim-4">
+                <a href="nova-parceria.html" class="btn-primary">
+                    Propor uma parceria
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                    </svg>
+                </a>
+                <a href="#sobre" class="btn-ghost">Saiba mais</a>
+            </div>
+        </div>
+
+        <div class="hero-image-col">
+            <img src="fotos/Senac-minha-historia.webp" alt="Estudantes do Senac SP em atividade acadêmica">
         </div>
     </section>
 
-    <main class="flex-grow container mx-auto px-4 py-10 space-y-12">
-        
-        <div class="grid md:grid-cols-2 gap-10 items-center">
-            <div>
-                <h2 class="text-2xl font-bold text-senac-orange mb-4 border-l-4 border-senac-blue pl-3">Quem Somos?</h2>
-                <p class="text-gray-700 mb-4 leading-relaxed">
-                    O Comitê de Parcerias do Centro Universitário é uma entidade colegiada dedicada à gestão de parcerias acadêmicas.
+    <!-- STATS -->
+    <section class="stats-strip" aria-label="Estatísticas">
+        <div class="stat-item">
+            <span class="stat-num">+200</span>
+            <span class="stat-label">Parcerias ativas</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-num">+50</span>
+            <span class="stat-label">Empresas parceiras</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-num">+30</span>
+            <span class="stat-label">Eventos por ano</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-num">+1k</span>
+            <span class="stat-label">Alunos impactados</span>
+        </div>
+    </section>
+
+    <main id="sobre">
+
+        <!-- QUEM SOMOS -->
+        <section class="content-wrap" aria-label="Sobre nós">
+            <div class="about-grid">
+                <div class="about-image-wrap">
+                    <div class="about-image-border"></div>
+                    <img src="fotos/Senac-minha-historia.webp" alt="Senac minha história">
+                    <div class="about-image-accent"></div>
+                </div>
+                <div>
+                    <div class="section-label">Sobre nós</div>
+                    <h2 class="about-title">
+                        Conectando<br>
+                        <em>aprendizado</em> e<br>
+                        mercado de trabalho
+                    </h2>
+                    <p class="about-text">
+                        O Comitê de Parcerias é uma entidade colegiada dedicada à gestão de parcerias acadêmicas do Centro Universitário Senac. Atuamos na formalização e gestão de contratos para que as colaborações sejam estruturadas e gerem valor real.
+                    </p>
+                    <p class="about-text">
+                        Viabilizamos atividades que conectam a sala de aula com o mercado, promovendo formação de qualidade e oportunidades concretas para nossos estudantes.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ATIVIDADES -->
+        <section class="activities-section">
+            <div class="activities-header">
+                <div>
+                    <div class="section-label" style="color:rgba(246,141,46,0.8);">Parcerias acadêmicas</div>
+                    <h2 class="activities-title">
+                        O que uma parceria<br>
+                        pode <em>proporcionar</em>
+                    </h2>
+                </div>
+                <p class="activities-desc">
+                    Uma colaboração entre a instituição, os docentes e a entidade externa enriquece o aprendizado e conecta os alunos ao mercado.
                 </p>
-                <p class="text-gray-700 leading-relaxed">
-                    Contribuímos para viabilizar atividades que conectem a sala de aula com o mercado por meio da formalização e gestão de contratos.
-                </p>
             </div>
-            <div class="bg-gray-200 h-64 rounded-lg flex items-center justify-center text-gray-400">
-                <img src="/fotos/Senac-minha-historia.webp" class="h-full w-full" alt="">
+
+            <div class="activities-grid">
+                <div class="activity-item">
+                    <svg class="activity-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                    </svg>
+                    <div class="activity-name">Palestras &amp;<br>Workshops</div>
+                </div>
+                <div class="activity-item">
+                    <svg class="activity-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                    <div class="activity-name">Visitas<br>técnicas</div>
+                </div>
+                <div class="activity-item">
+                    <svg class="activity-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                    </svg>
+                    <div class="activity-name">Projetos de<br>pesquisa</div>
+                </div>
+                <div class="activity-item">
+                    <svg class="activity-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/>
+                    </svg>
+                    <div class="activity-name">Projetos de<br>extensão</div>
+                </div>
+                <div class="activity-item">
+                    <svg class="activity-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                    <div class="activity-name">Vagas de estágio<br>&amp; emprego</div>
+                </div>
             </div>
-        </div>
+        </section>
 
-        <div class="bg-white p-8 rounded-lg shadow-sm border border-gray-100">
-            <h2 class="text-2xl font-bold text-senac-blue mb-6">O que são parcerias acadêmicas?</h2>
-            <p class="text-gray-700 mb-6">
-                Para o Centro Universitário Senac, uma parceria acadêmica é uma colaboração entre a instituição, os colaboradores e a entidade externa para enriquecer o aprendizado dos alunos e conectá-los ao mercado de trabalho, ao possibilitar atividades como:
-            </p>
-            <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                <li class="flex items-center space-x-2 text-gray-700"><span class="w-2 h-2 bg-senac-orange rounded-full"></span><span>Palestras e Workshops</span></li>
-                <li class="flex items-center space-x-2 text-gray-700"><span class="w-2 h-2 bg-senac-orange rounded-full"></span><span>Visitas técnicas</span></li>
-                <li class="flex items-center space-x-2 text-gray-700"><span class="w-2 h-2 bg-senac-orange rounded-full"></span><span>Projetos de pesquisa</span></li>
-                <li class="flex items-center space-x-2 text-gray-700"><span class="w-2 h-2 bg-senac-orange rounded-full"></span><span>Projetos de extensão</span></li>
-                <li class="flex items-center space-x-2 text-gray-700"><span class="w-2 h-2 bg-senac-orange rounded-full"></span><span>Oferta de vagas de estágio e emprego</span></li>
-            </ul>
-        </div>
+        <!-- SERVIÇOS -->
+        <section class="services-section">
+            <div class="content-wrap">
+                <div class="services-header">
+                    <div class="section-label" style="justify-content:center;">Como podemos ajudar</div>
+                    <h2 class="services-title">Em que o Comitê<br><em>pode te ajudar?</em></h2>
+                </div>
+                <div class="services-grid">
 
-        <div>
-            <h2 class="text-2xl font-bold text-senac-orange mb-8 text-center">Em que situações o Comitê pode te ajudar?</h2>
-            <div class="grid md:grid-cols-3 gap-6">
-                <a href="nova-parceria.html" class="block group">
-                    <div class="bg-white border hover:border-senac-blue p-6 rounded-lg shadow-sm hover:shadow-md transition duration-300 h-full flex flex-col items-center text-center">
-                        <div class="w-12 h-12 bg-blue-100 text-senac-blue rounded-full flex items-center justify-center mb-4">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                    <a href="nova-parceria.html" class="service-card">
+                        <span class="service-num">01</span>
+                        <div class="service-icon-wrap">
+                            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
+                            </svg>
                         </div>
-                        <h3 class="font-bold text-lg text-gray-800 group-hover:text-senac-blue">Quero propor uma parceria</h3>
-                        <p class="text-sm text-gray-500 mt-2">Guia para formalização de novos parceiros.</p>
-                    </div>
-                </a>
-                
-                <a href="projeto-pesquisa.html" class="block group">
-                    <div class="bg-white border hover:border-senac-blue p-6 rounded-lg shadow-sm hover:shadow-md transition duration-300 h-full flex flex-col items-center text-center">
-                        <div class="w-12 h-12 bg-orange-100 text-senac-orange rounded-full flex items-center justify-center mb-4">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                        <h3 class="service-title">Nova Parceria</h3>
+                        <p class="service-desc">Guia completo para formalização de novos parceiros acadêmicos com o Centro Universitário Senac.</p>
+                        <div class="service-footer">
+                            Acessar
+                            <svg class="service-arrow" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
                         </div>
-                        <h3 class="font-bold text-lg text-gray-800 group-hover:text-senac-blue">Parceiro para Projeto</h3>
-                        <p class="text-sm text-gray-500 mt-2">Pesquisa e Extensão.</p>
-                    </div>
-                </a>
+                    </a>
 
-                <a href="propor-evento.html" class="block group">
-                    <div class="bg-white border hover:border-senac-blue p-6 rounded-lg shadow-sm hover:shadow-md transition duration-300 h-full flex flex-col items-center text-center">
-                        <div class="w-12 h-12 bg-blue-100 text-senac-blue rounded-full flex items-center justify-center mb-4">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                    <a href="projeto-pesquisa.html" class="service-card">
+                        <span class="service-num">02</span>
+                        <div class="service-icon-wrap" style="border-color:rgba(246,141,46,0.3);color:var(--orange);">
+                            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+                            </svg>
                         </div>
-                        <h3 class="font-bold text-lg text-gray-800 group-hover:text-senac-blue">Propor um Evento</h3>
-                        <p class="text-sm text-gray-500 mt-2">Palestras, workshops e visitas.</p>
-                    </div>
-                </a>
+                        <h3 class="service-title">Projetos de Pesquisa</h3>
+                        <p class="service-desc">Conecte sua empresa a projetos de pesquisa e extensão desenvolvidos pelos nossos estudantes e docentes.</p>
+                        <div class="service-footer">
+                            Acessar
+                            <svg class="service-arrow" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </div>
+                    </a>
+
+                    <a href="propor-evento.html" class="service-card">
+                        <span class="service-num">03</span>
+                        <div class="service-icon-wrap">
+                            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                            </svg>
+                        </div>
+                        <h3 class="service-title">Propor um Evento</h3>
+                        <p class="service-desc">Organize palestras, workshops e visitas técnicas para nossos estudantes. Traga sua experiência para a sala de aula.</p>
+                        <div class="service-footer">
+                            Acessar
+                            <svg class="service-arrow" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </div>
+                    </a>
+
+                </div>
             </div>
-        </div>
+        </section>
 
-        <div class="grid md:grid-cols-2 gap-8">
-            <div class="bg-senac-blue text-white p-8 rounded-lg">
-                <h3 class="text-xl font-bold mb-4">Newsletter</h3>
-                <p class="mb-4 text-blue-100">Acompanhe as últimas notícias do Comitê de Parcerias sobre novas ativações.</p>
-                <form class="flex gap-2">
-                    <input type="email" placeholder="Seu e-mail" class="w-full px-4 py-2 rounded text-gray-800 focus:outline-none">
-                    <button class="bg-senac-orange-dark hover:bg-orange-800 px-6 py-2 rounded font-bold transition">Assinar</button>
+        <!-- NEWSLETTER + CONTATO -->
+        <section class="bottom-strip" aria-label="Newsletter e contato">
+            <div class="newsletter-block">
+                <h3>Newsletter</h3>
+                <p>Acompanhe as últimas notícias sobre novas ativações, parcerias e oportunidades do Comitê.</p>
+                <form class="newsletter-form" onsubmit="return false;">
+                    <label for="newsletter-email" class="sr-only" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;">Seu e-mail profissional</label>
+                    <input class="newsletter-input" type="email" id="newsletter-email" placeholder="Seu e-mail profissional" autocomplete="email">
+                    <button class="newsletter-btn" type="submit">Assinar</button>
                 </form>
             </div>
-
-            <div class="bg-gray-100 p-8 rounded-lg">
-                <h3 class="text-xl font-bold text-gray-800 mb-4">Dúvidas?</h3>
-                <p class="text-gray-600 mb-4">Está com dúvidas? Entre em contato conosco.</p>
-                <a href="mailto:parceriascas@sp.senac.br" class="flex items-center text-senac-blue font-bold hover:underline">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+            <div class="contact-block">
+                <h3>Ficou com dúvidas?</h3>
+                <p>Nossa equipe está pronta para te ajudar. Entre em contato diretamente pelo e-mail abaixo e retornaremos em breve.</p>
+                <a href="mailto:parceriascas@sp.senac.br" class="contact-link">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                    </svg>
                     parceriascas@sp.senac.br
                 </a>
             </div>
-        </div>
+        </section>
 
     </main>
 
-    <footer class="bg-gray-800 text-white py-8 mt-auto">
-        <div class="container mx-auto px-4 text-center text-sm text-gray-400">
-            <p>&copy; 2026 Senac São Paulo. Todos os direitos reservados.</p>
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div>
+                    <img style="height:28px;filter:brightness(0) invert(1);opacity:0.6;display:block;margin-bottom:8px;" src="Senac_logo.svg.png" alt="Senac SP">
+                    <span style="font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;">Comitê de Parcerias</span>
+                </div>
+                <nav class="footer-nav" aria-label="Navegação do rodapé">
+                    <a href="index.html">Início</a>
+                    <a href="nova-parceria.html">Nova Parceria</a>
+                    <a href="projeto-pesquisa.html">Projetos</a>
+                    <a href="propor-evento.html">Eventos</a>
+                    <a href="mailto:parceriascas@sp.senac.br">Contato</a>
+                </nav>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 Senac São Paulo. Todos os direitos reservados.
+            </div>
         </div>
     </footer>
+
+    <script>
+        // Mobile menu
+        const toggle = document.getElementById('menu-toggle');
+        const menu = document.getElementById('mobile-menu');
+        toggle.addEventListener('click', () => {
+            menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Show hamburger on mobile
+        function checkMobile() {
+            const isMobile = window.innerWidth < 768;
+            toggle.style.display = isMobile ? 'block' : 'none';
+            document.querySelector('.hidden-mobile').style.display = isMobile ? 'none' : 'flex';
+            if (!isMobile) menu.style.display = 'none';
+        }
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+    </script>
 
 </body>
 </html>
